@@ -1,6 +1,6 @@
 import os
 import azure.functions as func
-from azure.cosmos import CosmosClient, PartitionKey
+from azure.cosmos import CosmosClient
 import logging
 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.FUNCTION)
