@@ -1,6 +1,6 @@
 import os
 import azure.functions as func
-from azure.cosmos import CosmosClient, CosmosException
+from azure.cosmos import CosmosClient, exceptions
 import logging
 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.FUNCTION)
@@ -23,7 +23,7 @@ def http_trigger(req: func.HttpRequest) -> func.HttpResponse:
             count += 1
             updated_item['count'] = str(count)
             CONTAINER.upsert_item(item, updated_item)
-    except CosmosException as e:
+    except exceptions.CosmosHttpResponseError as e:
         logging.error(f"An error occurred: {e.status_code} - {e.message}")
         count = e.message
 
