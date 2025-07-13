@@ -13,6 +13,7 @@ COSMOS_CLIENT = CosmosClient(COSMOS_DB_ENDPOINT, CREDENTIAL)
 DATABASE = COSMOS_CLIENT.get_database_client("heyitsadam")
 CONTAINER = DATABASE.get_container_client("counter")
 
+@app.function_name(name="http_trigger")
 @app.route(route="http_trigger")
 def http_trigger(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
