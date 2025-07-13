@@ -13,7 +13,7 @@ COSMOS_CLIENT = CosmosClient(COSMOS_DB_ENDPOINT, CREDENTIAL)
 DATABASE = COSMOS_CLIENT.get_database_client("heyitsadam")
 CONTAINER = DATABASE.get_container_client("counter")
 
-def main(req: func.HttpRequest) -> func.HttpResponse:
+def main(req: func.HttpRequest, res: func.Out[func.HttpResponse]) -> None:
     logging.info('Python HTTP trigger function processed a request.')
     count = 0
     query = f"SELECT * FROM c WHERE c.id = '1'"
@@ -28,4 +28,4 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         logging.error(f"An error occurred: {e.status_code} - {e.message}")
         count = e.message
 
-    return func.HttpResponse(body=str(count), status_code=200)
+    res.set(func.HttpResponse(body=str(count), status_code=200))
