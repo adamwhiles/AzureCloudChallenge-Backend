@@ -11,7 +11,7 @@ MANAGED_IDENTITY_CLIENT_ID = os.environ['MANAGED_IDENTITY_CLIENT_ID']
 CREDENTIAL = ManagedIdentityCredential(client_id=MANAGED_IDENTITY_CLIENT_ID)
 COSMOS_CLIENT = CosmosClient(COSMOS_DB_ENDPOINT, CREDENTIAL)
 DATABASE = COSMOS_CLIENT.get_database_client("heyitsadam")
-CONTAINER = DATABASE.get_container_client("counter")
+CONTAINER = DATABASE.get_container_client("count")
 
 def main(req: func.HttpRequest, res: func.Out[func.HttpResponse]) -> None:
     logging.info('Python HTTP trigger function processed a request.')
