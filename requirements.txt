@@ -4,3 +4,4 @@
 
 azure-functions>=1.18.0
 azure-cosmos>=4.5.0
+azure-identity>=1.15.0
