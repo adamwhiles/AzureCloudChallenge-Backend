@@ -52,5 +52,3 @@ jobs:
           app-name: 'func-heyitsadam'
           slot-name: 'Production'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-          enable-oryx-build: true
-          scm-do-build-during-deployment: true
