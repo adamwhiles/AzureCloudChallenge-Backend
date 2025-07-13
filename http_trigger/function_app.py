@@ -1,13 +1,14 @@
 import os
 import azure.functions as func
 from azure.cosmos import CosmosClient, exceptions
-from azure.identity import DefaultAzureCredential
+from azure.identity import ManagedIdentityCredential
 import logging
 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.FUNCTION)
 
 COSMOS_DB_ENDPOINT = os.environ['AzureCosmosDBEndpoint']
-CREDENTIAL = DefaultAzureCredential()
+MANAGED_IDENTITY_CLIENT_ID = os.environ['MANAGED_IDENTITY_CLIENT_ID']
+CREDENTIAL = ManagedIdentityCredential(client_id=MANAGED_IDENTITY_CLIENT_ID)
 COSMOS_CLIENT = CosmosClient(COSMOS_DB_ENDPOINT, CREDENTIAL)
 DATABASE = COSMOS_CLIENT.get_database_client("heyitsadam")
 CONTAINER = DATABASE.get_container_client("counter")
